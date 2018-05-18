@@ -171,8 +171,8 @@ console.log(randomChar())
     const $ = cheerio.load(body); 
     $('.movie-list-body').each(function(i,elements){ 
       request($(this).attr('href'),(error, response,body)=>{
-        const s = cheerio.load(body);
-        s('.synopsis-section').each(function(i,elements){
+        const $ = cheerio.load(body);
+        $('.synopsis-section').each(function(i,elements){
           console.log($(this).children("li").text())
         })
         
