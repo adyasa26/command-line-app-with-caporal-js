@@ -195,21 +195,6 @@ console.log(randomChar())
 )})// end of action
 
 
-.command('cgv')
-.action((args, options, logger)=> {
-  request('https://cgv.id/en/movies/now_playing',(error, response,body)=>{ // request is javascript request
-    const $ = cheerio.load(body); // cheerio scraping html
-    $('div.movie-list-body ul li a').each(function(i,elements){ // 'a' is a tag, headline...is class name of tag 'a'// use children() cause <h2>text are inside 'a' tag 
-      console.log($(this).attr('href'))
-      console.log('\n')
-      
-    })
-  });
-})
-
-
-
-
 prog.parse(process.argv);
  
 // ./myprog deploy myapp production --tail 100
