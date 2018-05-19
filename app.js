@@ -161,26 +161,48 @@ console.log(randomChar())
       console.log('\n')
       
     })
-  });
+  })
 })
 
 //======================== 12 ===========================//
 .command('movies')
+.action((args, options, logger)=>{
+  request('https://cgv.id/en/movies/now_playing',(function(error,response,body){
+    const $ = cheerio.load(body);
+    $('div.movie-list-body ul li a').each(function(i,elements){
+      let url = 'https://cgv.id'+$(this).attr('href')
+      //console.log(url);      
+      //for(let i=0;i>url.length;i++)
+        request(url,(err,res,html)=>{
+          const $ = cheerio.load(html)
+          $('div.synopsis-section div.movie-add-info ul li').each(function(i,elements){
+            console.log($(this).text())
+            console.log('\n')
+            
+          }) // each
+        })// request 2
+
+      //} // for
+
+    }// $
+
+  )}) // end of request 1
+
+)})// end of action
+
+
+.command('cgv')
 .action((args, options, logger)=> {
-  request('https://cgv.id/en/movies/now_playing',(error, response,body)=>{ 
-    const $ = cheerio.load(body); 
-    $('.movie-list-body').each(function(i,elements){ 
-      request($(this).attr('href'),(error, response,body)=>{
-        const $ = cheerio.load(body);
-        $('.synopsis-section').each(function(i,elements){
-          console.log($(this).children("li").text())
-        })
-        
-      })
+  request('https://cgv.id/en/movies/now_playing',(error, response,body)=>{ // request is javascript request
+    const $ = cheerio.load(body); // cheerio scraping html
+    $('div.movie-list-body ul li a').each(function(i,elements){ // 'a' is a tag, headline...is class name of tag 'a'// use children() cause <h2>text are inside 'a' tag 
+      console.log($(this).attr('href'))
+      console.log('\n')
       
     })
   });
 })
+
 
 
 
