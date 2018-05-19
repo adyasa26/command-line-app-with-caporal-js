@@ -176,9 +176,13 @@ console.log(randomChar())
         request(url,(err,res,html)=>{
           const $ = cheerio.load(html)
           $('div.synopsis-section div.movie-add-info ul li').each(function(i,elements){
-            console.log($(this).text())
-            
+            console.log($(this).text())            
           }) // each
+          $('div.synopsis-section div.movie-synopsis').each(function(i,elements){
+            console.log($(this).text())            
+          })
+          console.log('\n')
+          console.log('--------------------------------------------------------------------------------------------')
           console.log('\n')
         })// request 2
 
