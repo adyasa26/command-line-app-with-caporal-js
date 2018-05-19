@@ -177,9 +177,9 @@ console.log(randomChar())
           const $ = cheerio.load(html)
           $('div.synopsis-section div.movie-add-info ul li').each(function(i,elements){
             console.log($(this).text())
-            console.log('\n')
             
           }) // each
+          console.log('\n')
         })// request 2
 
       //} // for
